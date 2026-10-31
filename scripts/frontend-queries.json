@@ -1,0 +1,614 @@
+[
+  {
+    "col": "leads",
+    "filter": "leadStatus = ",
+    "sort": "-updated",
+    "file": "app\\portal\\(authenticated)\\employee\\page.tsx"
+  },
+  {
+    "col": "payment_receipts",
+    "filter": "deleted != true",
+    "sort": "-created",
+    "file": "app\\portal\\(authenticated)\\employee\\page.tsx"
+  },
+  {
+    "col": "users",
+    "sort": "name",
+    "file": "lib\\activeEmployeesService.ts"
+  },
+  {
+    "col": "employee_breaks",
+    "file": "lib\\breaks.ts"
+  },
+  {
+    "col": "logistics_loads",
+    "sort": "-created",
+    "file": "app\\portal\\(authenticated)\\logistics-admin\\page.tsx"
+  },
+  {
+    "col": "logistics_jobs",
+    "sort": "-created",
+    "file": "app\\portal\\(authenticated)\\logistics-admin\\page.tsx"
+  },
+  {
+    "col": "logistics_job_applications",
+    "sort": "-created",
+    "file": "app\\portal\\(authenticated)\\logistics-admin\\page.tsx"
+  },
+  {
+    "col": "logistics_dispatch_requests",
+    "sort": "-created",
+    "file": "app\\portal\\(authenticated)\\logistics-admin\\page.tsx"
+  },
+  {
+    "col": "marketplace_listings",
+    "file": "app\\portal\\(authenticated)\\marketplace-admin\\page.tsx"
+  },
+  {
+    "col": "marketplace_listings",
+    "filter": "status=",
+    "file": "app\\portal\\(authenticated)\\marketplace-admin\\page.tsx"
+  },
+  {
+    "col": "marketplace_contact_requests",
+    "filter": "status=",
+    "file": "app\\portal\\(authenticated)\\marketplace-admin\\page.tsx"
+  },
+  {
+    "col": "marketplace_users",
+    "file": "app\\portal\\(authenticated)\\marketplace-admin\\page.tsx"
+  },
+  {
+    "col": "marketplace_listings",
+    "sort": "-created",
+    "file": "app\\portal\\(authenticated)\\marketplace-admin\\page.tsx"
+  },
+  {
+    "col": "marketplace_contact_requests",
+    "sort": "-created",
+    "file": "app\\portal\\(authenticated)\\marketplace-admin\\page.tsx"
+  },
+  {
+    "col": "marketplace_users",
+    "sort": "-created",
+    "file": "app\\portal\\(authenticated)\\marketplace-admin\\page.tsx"
+  },
+  {
+    "col": "velqen_smile_donors",
+    "sort": "-created",
+    "file": "app\\portal\\(authenticated)\\velqen-smile\\page.tsx"
+  },
+  {
+    "col": "velqen_smile_help_seekers",
+    "sort": "-created",
+    "file": "app\\portal\\(authenticated)\\velqen-smile\\page.tsx"
+  },
+  {
+    "col": "volunteer_registrations",
+    "sort": "-created",
+    "file": "components\\portal\\admin\\PeopleWidgets.tsx"
+  },
+  {
+    "col": "volunteer_registrations",
+    "file": "app\\portal\\(authenticated)\\volunteer\\page.tsx"
+  },
+  {
+    "col": "employee_chat",
+    "file": "components\\EmployeeChat.tsx"
+  },
+  {
+    "col": "employee_chat",
+    "sort": "created",
+    "file": "components\\portal\\AdminChatOversight.tsx"
+  },
+  {
+    "col": "employee_chat",
+    "sort": "-created",
+    "file": "components\\EmployeeChat.tsx"
+  },
+  {
+    "col": "logistics_loads",
+    "filter": "status = ",
+    "file": "components\\logistics\\LogisticsDashboard.tsx"
+  },
+  {
+    "col": "logistics_loads",
+    "filter": "owner = ",
+    "file": "components\\logistics\\LogisticsDashboard.tsx"
+  },
+  {
+    "col": "logistics_jobs",
+    "filter": "status = ",
+    "file": "components\\logistics\\LogisticsDashboard.tsx"
+  },
+  {
+    "col": "logistics_job_applications",
+    "filter": "applicant = ",
+    "file": "components\\logistics\\LogisticsJobs.tsx"
+  },
+  {
+    "col": "logistics_dispatch_requests",
+    "filter": "owner = ",
+    "file": "components\\logistics\\LogisticsDashboard.tsx"
+  },
+  {
+    "col": "logistics_drayage_requests",
+    "filter": "owner = ",
+    "file": "components\\logistics\\LogisticsDashboard.tsx"
+  },
+  {
+    "col": "logistics_freight_requests",
+    "filter": "owner = ",
+    "file": "components\\logistics\\LogisticsDashboard.tsx"
+  },
+  {
+    "col": "logistics_notifications",
+    "filter": "owner = ",
+    "file": "components\\logistics\\LogisticsDashboard.tsx"
+  },
+  {
+    "col": "logistics_jobs",
+    "file": "components\\logistics\\LogisticsJobs.tsx"
+  },
+  {
+    "col": "logistics_job_applications",
+    "filter": "applicant = ",
+    "sort": "-created",
+    "file": "components\\logistics\\LogisticsJobs.tsx"
+  },
+  {
+    "col": "logistics_loads",
+    "file": "components\\logistics\\LogisticsLoads.tsx"
+  },
+  {
+    "col": "logistics_saved_loads",
+    "filter": "owner = ",
+    "file": "components\\logistics\\LogisticsLoads.tsx"
+  },
+  {
+    "col": "logistics_loads",
+    "filter": "owner = ",
+    "sort": "-created",
+    "file": "components\\logistics\\LogisticsLoads.tsx"
+  },
+  {
+    "col": "logistics_load_responses",
+    "sort": "-created",
+    "file": "components\\logistics\\LogisticsLoads.tsx"
+  },
+  {
+    "col": "logistics_dispatch_requests",
+    "filter": "owner = ",
+    "sort": "-created",
+    "file": "components\\logistics\\LogisticsRequests.tsx"
+  },
+  {
+    "col": "logistics_drayage_requests",
+    "filter": "owner = ",
+    "sort": "-created",
+    "file": "components\\logistics\\LogisticsRequests.tsx"
+  },
+  {
+    "col": "logistics_freight_requests",
+    "filter": "owner = ",
+    "sort": "-created",
+    "file": "components\\logistics\\LogisticsRequests.tsx"
+  },
+  {
+    "col": "notifications",
+    "filter": "recipient = ",
+    "sort": "-created",
+    "file": "components\\portal\\manager\\TeamCalendarSync.tsx"
+  },
+  {
+    "col": "salary_records",
+    "sort": "-created",
+    "file": "components\\portal\\admin\\AccountManager.tsx"
+  },
+  {
+    "col": "leave_change_requests",
+    "sort": "-created",
+    "file": "components\\portal\\admin\\AttendanceCorrectionRequestsTab.tsx"
+  },
+  {
+    "col": "late_apologies",
+    "sort": "-created",
+    "file": "components\\portal\\manager\\LateApologyApproval.tsx"
+  },
+  {
+    "col": "eod_reports",
+    "sort": "-date",
+    "file": "components\\portal\\admin\\EODDashboard.tsx"
+  },
+  {
+    "col": "manager_eod_reviews",
+    "sort": "-eodDate",
+    "file": "components\\portal\\admin\\ManagerEodAdmin.tsx"
+  },
+  {
+    "col": "exit_records",
+    "sort": "-created",
+    "file": "components\\portal\\admin\\ExitManagementPanel.tsx"
+  },
+  {
+    "col": "salary_slips",
+    "file": "components\\portal\\admin\\ExitManagementPanel.tsx"
+  },
+  {
+    "col": "attendance",
+    "filter": "employee = ",
+    "file": "components\\portal\\ExitWorkflowModal.tsx"
+  },
+  {
+    "col": "leave_marks",
+    "filter": "employee = ",
+    "file": "components\\portal\\ExitWorkflowModal.tsx"
+  },
+  {
+    "col": "companies",
+    "sort": "order",
+    "file": "components\\portal\\admin\\GroupFinancialQuarterly.tsx"
+  },
+  {
+    "col": "company_holidays",
+    "file": "components\\portal\\admin\\HolidayCalendarManager.tsx"
+  },
+  {
+    "col": "company_holiday_audit",
+    "sort": "-changedAt",
+    "file": "components\\portal\\admin\\HolidayCalendarManager.tsx"
+  },
+  {
+    "col": "lead_notes",
+    "file": "components\\portal\\VisitorsPanel.tsx"
+  },
+  {
+    "col": "manager_eod_consolidated",
+    "file": "components\\portal\\admin\\ManagerEodAdmin.tsx"
+  },
+  {
+    "col": "overtime_requests",
+    "sort": "-created",
+    "file": "components\\portal\\admin\\OvertimeManagement.tsx"
+  },
+  {
+    "col": "payment_receipts",
+    "sort": "-created",
+    "file": "components\\portal\\admin\\PaymentReceiptManager.tsx"
+  },
+  {
+    "col": "resignation_requests",
+    "sort": "-created",
+    "file": "components\\portal\\admin\\ResignationRequestsPanel.tsx"
+  },
+  {
+    "col": "salary_slips",
+    "sort": "-created",
+    "file": "components\\portal\\admin\\SalarySlipManager.tsx"
+  },
+  {
+    "col": "salary_slip_requests",
+    "sort": "-created",
+    "file": "components\\portal\\admin\\SalarySlipManager.tsx"
+  },
+  {
+    "col": "payroll_settings_audit",
+    "sort": "-created",
+    "file": "components\\portal\\admin\\SalarySlipManager.tsx"
+  },
+  {
+    "col": "salary_slip_audit",
+    "sort": "-created",
+    "file": "components\\portal\\admin\\SalarySlipManager.tsx"
+  },
+  {
+    "col": "support_tickets",
+    "sort": "-created",
+    "file": "components\\portal\\admin\\SupportTicketsManager.tsx"
+  },
+  {
+    "col": "users",
+    "file": "components\\portal\\ClientProfile.tsx"
+  },
+  {
+    "col": "chat_compliance_alerts",
+    "sort": "-created",
+    "file": "components\\portal\\AdminChatOversight.tsx"
+  },
+  {
+    "col": "call_logs",
+    "sort": "-created",
+    "file": "components\\portal\\AdminCommunicationsPanel.tsx"
+  },
+  {
+    "col": "sheet_connections",
+    "filter": "purpose = ",
+    "file": "components\\portal\\AdminRecruitment.tsx"
+  },
+  {
+    "col": "users",
+    "filter": "role = ",
+    "file": "components\\portal\\manager\\ManagerHiring.tsx"
+  },
+  {
+    "col": "recruitment_candidates",
+    "filter": "deleted != true",
+    "file": "components\\portal\\AdminRecruitment.tsx"
+  },
+  {
+    "col": "recruitment_hire_requests",
+    "filter": "status = ",
+    "file": "components\\portal\\AdminRecruitment.tsx"
+  },
+  {
+    "col": "recruitment_interviews",
+    "filter": "interviewDate = ",
+    "file": "components\\portal\\AdminRecruitment.tsx"
+  },
+  {
+    "col": "recruitment_candidates",
+    "file": "components\\portal\\manager\\ManagerHiring.tsx"
+  },
+  {
+    "col": "recruitment_hire_requests",
+    "sort": "-created",
+    "file": "components\\portal\\AdminRecruitment.tsx"
+  },
+  {
+    "col": "employee_breaks",
+    "sort": "-created",
+    "file": "components\\portal\\BreakRequestsManager.tsx"
+  },
+  {
+    "col": "attendance",
+    "filter": "lunchStartAt != ",
+    "sort": "-date",
+    "file": "components\\portal\\BreakRequestsManager.tsx"
+  },
+  {
+    "col": "call_history",
+    "file": "components\\portal\\ViewInquiryModal.tsx"
+  },
+  {
+    "col": "call_history",
+    "sort": "-created",
+    "file": "components\\portal\\CallWhatsappActivityPanel.tsx"
+  },
+  {
+    "col": "candidate_notes",
+    "file": "components\\portal\\CandidateNotesPanel.tsx"
+  },
+  {
+    "col": "payment_receipts",
+    "file": "components\\portal\\ClientProfile.tsx"
+  },
+  {
+    "col": "client_documents",
+    "file": "components\\portal\\ClientProfile.tsx"
+  },
+  {
+    "col": "leads",
+    "sort": "-updated",
+    "file": "components\\TopClientSearch.tsx"
+  },
+  {
+    "col": "leads",
+    "file": "lib\\fetchEvaluationData.ts"
+  },
+  {
+    "col": "call_logs",
+    "filter": "employee = ",
+    "sort": "-created",
+    "file": "components\\portal\\CommunicationsPanel.tsx"
+  },
+  {
+    "col": "whatsapp_messages",
+    "filter": "employee = ",
+    "sort": "-created",
+    "file": "components\\portal\\CommunicationsPanel.tsx"
+  },
+  {
+    "col": "employee_documents",
+    "file": "components\\portal\\EmployeeDocumentsPanel.tsx"
+  },
+  {
+    "col": "leave_change_requests",
+    "file": "components\\portal\\EmployeeLeaveCalendar.tsx"
+  },
+  {
+    "col": "resignation_requests",
+    "file": "components\\portal\\EmployeeResignationView.tsx"
+  },
+  {
+    "col": "salary_slip_requests",
+    "filter": "employee = ",
+    "sort": "-created",
+    "file": "components\\portal\\EmployeeSalarySlip.tsx"
+  },
+  {
+    "col": "salary_slips",
+    "filter": "employee = ",
+    "sort": "-created",
+    "file": "components\\portal\\EmployeeSalarySlip.tsx"
+  },
+  {
+    "col": "leads",
+    "filter": "clientUser != ",
+    "file": "components\\portal\\FillingOfficerPanel.tsx"
+  },
+  {
+    "col": "late_apologies",
+    "file": "components\\portal\\LateApologyManager.tsx"
+  },
+  {
+    "col": "lead_contacts",
+    "file": "components\\portal\\LeadContactsPanel.tsx"
+  },
+  {
+    "col": "leave_marks",
+    "file": "lib\\fetchEvaluationData.ts"
+  },
+  {
+    "col": "client_documents",
+    "filter": "uploadedByRole = ",
+    "sort": "-created",
+    "file": "components\\portal\\manager\\ManagerClientDocuments.tsx"
+  },
+  {
+    "col": "manager_eod_reviews",
+    "filter": "manager = ",
+    "file": "components\\portal\\manager\\ManagerEodReviews.tsx"
+  },
+  {
+    "col": "manager_eod_consolidated",
+    "filter": "manager = ",
+    "file": "components\\portal\\manager\\ManagerEodReviews.tsx"
+  },
+  {
+    "col": "eod_reports",
+    "filter": "employee = ",
+    "file": "components\\portal\\manager\\ManagerEodReviews.tsx"
+  },
+  {
+    "col": "manager_activity_log",
+    "filter": "manager = ",
+    "sort": "timestamp",
+    "file": "components\\portal\\manager\\ManagerEodReviews.tsx"
+  },
+  {
+    "col": "leads",
+    "filter": "(${orBy(",
+    "file": "components\\portal\\manager\\ManagerEodReviews.tsx"
+  },
+  {
+    "col": "visitors",
+    "filter": "(${orBy(",
+    "file": "components\\portal\\manager\\ManagerEodReviews.tsx"
+  },
+  {
+    "col": "company_income",
+    "filter": "(${orBy(",
+    "file": "components\\portal\\manager\\ManagerEodReviews.tsx"
+  },
+  {
+    "col": "company_expenses",
+    "filter": "deleted != true",
+    "sort": "-created",
+    "file": "components\\portal\\manager\\ManagerExpensePunch.tsx"
+  },
+  {
+    "col": "recruitment_conversations",
+    "filter": "candidate = ",
+    "sort": "-created",
+    "file": "components\\portal\\manager\\ManagerHiring.tsx"
+  },
+  {
+    "col": "recruitment_interviews",
+    "filter": "candidate = ",
+    "sort": "-interviewDate",
+    "file": "components\\portal\\manager\\ManagerHiring.tsx"
+  },
+  {
+    "col": "recruitment_assessments",
+    "filter": "candidate = ",
+    "sort": "-created",
+    "file": "components\\portal\\manager\\ManagerHiring.tsx"
+  },
+  {
+    "col": "recruitment_candidate_edits",
+    "filter": "candidate = ",
+    "sort": "-created",
+    "file": "components\\portal\\manager\\ManagerHiring.tsx"
+  },
+  {
+    "col": "recruitment_interviews",
+    "filter": "candidate = ",
+    "sort": "-created",
+    "file": "components\\portal\\manager\\ManagerHiring.tsx"
+  },
+  {
+    "col": "overtime_requests",
+    "filter": "employee = ",
+    "sort": "-created",
+    "file": "components\\portal\\OvertimeRequestForm.tsx"
+  },
+  {
+    "col": "support_tickets",
+    "file": "components\\portal\\SupportTicketsPanel.tsx"
+  },
+  {
+    "col": "whatsapp_history",
+    "file": "components\\portal\\ViewInquiryModal.tsx"
+  },
+  {
+    "col": "visitors",
+    "file": "components\\portal\\VisitorsPanel.tsx"
+  },
+  {
+    "col": "website_updates",
+    "sort": "-created",
+    "file": "components\\portal\\WebsiteUpdatesPanel.tsx"
+  },
+  {
+    "col": "weekly_acknowledgements",
+    "file": "components\\portal\\WeeklyTargetReminder.tsx"
+  },
+  {
+    "col": "users",
+    "sort": "-created",
+    "file": "components\\TopClientSearch.tsx"
+  },
+  {
+    "col": "overtime_settings",
+    "file": "hooks\\useOvertimeSettings.ts"
+  },
+  {
+    "col": "trusted_devices",
+    "file": "lib\\deviceSecurity.ts"
+  },
+  {
+    "col": "login_attempts",
+    "file": "lib\\deviceSecurity.ts"
+  },
+  {
+    "col": "attendance",
+    "file": "lib\\fetchEvaluationData.ts"
+  },
+  {
+    "col": "targets",
+    "file": "lib\\fetchEvaluationData.ts"
+  },
+  {
+    "col": "monthly_targets",
+    "file": "lib\\fetchEvaluationData.ts"
+  },
+  {
+    "col": "eod_reports",
+    "file": "lib\\fetchEvaluationData.ts"
+  },
+  {
+    "col": "manager_eod_reviews",
+    "file": "lib\\fetchEvaluationData.ts"
+  },
+  {
+    "col": "disciplinary_records",
+    "file": "lib\\fetchEvaluationData.ts"
+  },
+  {
+    "col": "financial_transactions",
+    "file": "lib\\financialAggregator.ts"
+  },
+  {
+    "col": "company_holidays",
+    "sort": "-created",
+    "file": "lib\\holidayCalendar.ts"
+  },
+  {
+    "col": "login_sessions",
+    "file": "lib\\loginSessions.ts"
+  },
+  {
+    "col": "saturday_special_config",
+    "file": "lib\\saturdaySpecial.ts"
+  }
+]

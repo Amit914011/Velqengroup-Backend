@@ -1,0 +1,870 @@
+{
+  "_mfas": {
+    "listRule": "@request.auth.id != '' && recordRef = @request.auth.id && collectionRef = @request.auth.collectionId",
+    "viewRule": "@request.auth.id != '' && recordRef = @request.auth.id && collectionRef = @request.auth.collectionId",
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": null
+  },
+  "_otps": {
+    "listRule": "@request.auth.id != '' && recordRef = @request.auth.id && collectionRef = @request.auth.collectionId",
+    "viewRule": "@request.auth.id != '' && recordRef = @request.auth.id && collectionRef = @request.auth.collectionId",
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": null
+  },
+  "_externalAuths": {
+    "listRule": "@request.auth.id != '' && recordRef = @request.auth.id && collectionRef = @request.auth.collectionId",
+    "viewRule": "@request.auth.id != '' && recordRef = @request.auth.id && collectionRef = @request.auth.collectionId",
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": "@request.auth.id != '' && recordRef = @request.auth.id && collectionRef = @request.auth.collectionId"
+  },
+  "_authOrigins": {
+    "listRule": "@request.auth.id != '' && recordRef = @request.auth.id && collectionRef = @request.auth.collectionId",
+    "viewRule": "@request.auth.id != '' && recordRef = @request.auth.id && collectionRef = @request.auth.collectionId",
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": "@request.auth.id != '' && recordRef = @request.auth.id && collectionRef = @request.auth.collectionId"
+  },
+  "_superusers": {
+    "listRule": null,
+    "viewRule": null,
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": null
+  },
+  "users": {
+    "listRule": "id = @request.auth.id || @request.auth.role = 'admin' || @request.auth.email = 'reception@velqengroup.com'",
+    "viewRule": "id = @request.auth.id || @request.auth.role = 'admin' || @request.auth.email = 'reception@velqengroup.com'",
+    "createRule": "@request.auth.role = 'admin' || @request.auth.role = 'employee' || @request.auth.email = 'receiption@velqengroup.com'",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "_integratedAiMessages": {
+    "listRule": "@request.auth.id != '' && userId = @request.auth.id",
+    "viewRule": null,
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": "@request.auth.id != '' && userId = @request.auth.id"
+  },
+  "_integratedAiImages": {
+    "listRule": null,
+    "viewRule": "@request.auth.id != ''",
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": null
+  },
+  "leads": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = owner || @request.auth.id = clientUser || @request.auth.id = fillingOfficer || @request.auth.email = 'reception@velqengroup.com'",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = owner || @request.auth.id = clientUser || @request.auth.id = fillingOfficer || @request.auth.email = 'reception@velqengroup.com'",
+    "createRule": "(@request.auth.id != '' && @request.auth.role != 'client') || (@request.auth.id = '' && origin = 'Online Inquiry')",
+    "updateRule": "@request.auth.role = 'admin' || @request.auth.id = owner",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "targets": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "lead_notes": {
+    "listRule": "@request.auth.role = 'admin' || lead.owner = @request.auth.id || lead.owner.manager = @request.auth.id || lead.fillingOfficer = @request.auth.id || @request.auth.email = 'reception@velqengroup.com'",
+    "viewRule": "@request.auth.role = 'admin' || lead.owner = @request.auth.id || lead.owner.manager = @request.auth.id || lead.fillingOfficer = @request.auth.id || @request.auth.email = 'reception@velqengroup.com'",
+    "createRule": "@request.auth.id != '' && (@request.auth.role = 'admin' || lead.owner = @request.auth.id || lead.owner.manager = @request.auth.id || lead.fillingOfficer = @request.auth.id || @request.auth.email = 'reception@velqengroup.com')",
+    "updateRule": null,
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "leave_requests": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "createRule": "@request.auth.id != '' && (@request.auth.role = 'admin' || @request.auth.id = employee)",
+    "updateRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "deleteRule": "@request.auth.role = 'admin' || @request.auth.id = employee"
+  },
+  "attendance": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "createRule": "@request.auth.id != '' && (@request.auth.role = 'admin' || @request.auth.id = employee)",
+    "updateRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "leave_marks": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "pl_payouts": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "trusted_devices": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "login_attempts": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "createRule": "@request.auth.id != ''",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "salary_slips": {
+    "listRule": "(@request.auth.role = 'admin' || @request.auth.id = employee || @request.auth.email = 'receiption@velqengroup.com') || @request.auth.role = 'ca'",
+    "viewRule": "(@request.auth.role = 'admin' || @request.auth.id = employee || @request.auth.email = 'receiption@velqengroup.com') || @request.auth.role = 'ca'",
+    "createRule": "@request.auth.role = 'admin' || @request.auth.email = 'receiption@velqengroup.com'",
+    "updateRule": "@request.auth.role = 'admin' || @request.auth.email = 'receiption@velqengroup.com'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "payment_receipts": {
+    "listRule": "(@request.auth.role = 'admin' || @request.auth.id = employee || @request.auth.email = 'reception@velqengroup.com') || @request.auth.role = 'ca'",
+    "viewRule": "(@request.auth.role = 'admin' || @request.auth.id = employee || @request.auth.email = 'reception@velqengroup.com') || @request.auth.role = 'ca'",
+    "createRule": "@request.auth.role = 'admin' || @request.auth.email = 'reception@velqengroup.com'",
+    "updateRule": "@request.auth.role = 'admin' || @request.auth.email = 'reception@velqengroup.com'",
+    "deleteRule": "@request.auth.role = 'admin' || @request.auth.email = 'reception@velqengroup.com'"
+  },
+  "password_reset_requests": {
+    "listRule": "@request.auth.role = 'admin'",
+    "viewRule": "@request.auth.role = 'admin'",
+    "createRule": null,
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "sheet_connections": {
+    "listRule": "@request.auth.role = 'admin'",
+    "viewRule": "@request.auth.role = 'admin'",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "salary_slip_requests": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = employee || @request.auth.id = manager",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = employee || @request.auth.id = manager",
+    "createRule": "@request.auth.id != '' && (@request.auth.role = 'admin' || @request.auth.id = employee)",
+    "updateRule": "@request.auth.role = 'admin' || @request.auth.id = employee || @request.auth.id = manager",
+    "deleteRule": "@request.auth.role = 'admin' || @request.auth.id = employee"
+  },
+  "weekly_acknowledgements": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "createRule": "@request.auth.id != '' && @request.auth.id = employee",
+    "updateRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "client_documents": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.role = 'employee' || @request.auth.id = client",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.role = 'employee' || @request.auth.id = client",
+    "createRule": "@request.auth.id != ''",
+    "updateRule": "@request.auth.role = 'admin' || @request.auth.role = 'employee'",
+    "deleteRule": "@request.auth.role = 'admin' || @request.auth.role = 'employee'"
+  },
+  "employee_breaks": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = employee || employee.manager = @request.auth.id",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = employee || employee.manager = @request.auth.id",
+    "createRule": "@request.auth.id != '' && @request.auth.id = employee",
+    "updateRule": "@request.auth.role = 'admin' || @request.auth.id = employee || employee.manager = @request.auth.id",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "support_tickets": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "createRule": "@request.auth.id != '' && @request.auth.id = employee",
+    "updateRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "company_expenses": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.role = 'ca' || @request.auth.email = 'reception@velqengroup.com' || (@request.auth.id = submittedBy && deleted != true)",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.role = 'ca' || @request.auth.email = 'reception@velqengroup.com' || (@request.auth.id = submittedBy && deleted != true)",
+    "createRule": "@request.auth.role = 'admin' || @request.auth.email = 'reception@velqengroup.com'",
+    "updateRule": "@request.auth.role = 'admin' || @request.auth.email = 'reception@velqengroup.com' || @request.auth.id = submittedBy",
+    "deleteRule": "@request.auth.role = 'admin' || @request.auth.email = 'reception@velqengroup.com' || @request.auth.id = submittedBy"
+  },
+  "employee_advances": {
+    "listRule": "(@request.auth.role = 'admin' || @request.auth.id = employee || @request.auth.email = 'receiption@velqengroup.com') || @request.auth.role = 'ca'",
+    "viewRule": "(@request.auth.role = 'admin' || @request.auth.id = employee || @request.auth.email = 'receiption@velqengroup.com') || @request.auth.role = 'ca'",
+    "createRule": "@request.auth.role = 'admin' || @request.auth.email = 'receiption@velqengroup.com'",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "company_income": {
+    "listRule": "(@request.auth.role = 'admin') || @request.auth.role = 'ca'",
+    "viewRule": "(@request.auth.role = 'admin') || @request.auth.role = 'ca'",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "visitors": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.email = 'reception@velqengroup.com' || @request.auth.id = referredEmployee",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.email = 'reception@velqengroup.com' || @request.auth.id = referredEmployee",
+    "createRule": "@request.auth.role = 'admin' || @request.auth.email = 'reception@velqengroup.com'",
+    "updateRule": "@request.auth.role = 'admin' || @request.auth.email = 'reception@velqengroup.com'",
+    "deleteRule": "@request.auth.role = 'admin' || @request.auth.email = 'reception@velqengroup.com'"
+  },
+  "allocation_state": {
+    "listRule": "@request.auth.role = 'admin'",
+    "viewRule": "@request.auth.role = 'admin'",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "phone_otps": {
+    "listRule": null,
+    "viewRule": null,
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": null
+  },
+  "notifications": {
+    "listRule": "@request.auth.id != '' && (@request.auth.id = recipient || @request.auth.role = 'admin')",
+    "viewRule": "@request.auth.id != '' && (@request.auth.id = recipient || @request.auth.role = 'admin')",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.id != '' && (@request.auth.id = recipient || @request.auth.role = 'admin')",
+    "deleteRule": "@request.auth.id != '' && (@request.auth.id = recipient || @request.auth.role = 'admin')"
+  },
+  "broadcasts": {
+    "listRule": "@request.auth.role = 'admin'",
+    "viewRule": "@request.auth.role = 'admin'",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "lead_contacts": {
+    "listRule": "@request.auth.id != ''",
+    "viewRule": "@request.auth.id != ''",
+    "createRule": "@request.auth.id != '' && @request.auth.role != 'client'",
+    "updateRule": "@request.auth.id != '' && @request.auth.role != 'client'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "ca_documents": {
+    "listRule": "(@request.auth.id != '' && (@request.auth.role = 'admin' || @request.auth.id = owner)) || (@request.auth.department = 'Chartered Accountant' && @request.auth.id = owner)",
+    "viewRule": "(@request.auth.id != '' && (@request.auth.role = 'admin' || @request.auth.id = owner)) || (@request.auth.department = 'Chartered Accountant' && @request.auth.id = owner)",
+    "createRule": "(@request.auth.id != '' && (@request.auth.role = 'ca' || @request.auth.role = 'admin')) || @request.auth.department = 'Chartered Accountant'",
+    "updateRule": "(@request.auth.id != '' && (@request.auth.role = 'admin' || @request.auth.id = owner)) || (@request.auth.department = 'Chartered Accountant' && @request.auth.id = owner)",
+    "deleteRule": "(@request.auth.id != '' && (@request.auth.role = 'admin' || @request.auth.id = owner)) || (@request.auth.department = 'Chartered Accountant' && @request.auth.id = owner)"
+  },
+  "leave_change_requests": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "createRule": "@request.auth.id != '' && @request.auth.id = employee",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin' || @request.auth.id = employee"
+  },
+  "employee_chat": {
+    "listRule": "@request.auth.id != '' && (isDm != true || @request.auth.role = 'admin' || participants ~ @request.auth.id || sender = @request.auth.id)",
+    "viewRule": "@request.auth.id != '' && (isDm != true || @request.auth.role = 'admin' || participants ~ @request.auth.id || sender = @request.auth.id)",
+    "createRule": "@request.auth.id != '' && (@request.auth.role = 'admin' || (@request.auth.role = 'employee' && @request.auth.department != 'D Staff' && @request.auth.department != 'Chartered Accountant')) && @request.auth.id = sender",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "email_otps": {
+    "listRule": null,
+    "viewRule": null,
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": null
+  },
+  "marketplace_users": {
+    "listRule": "id = @request.auth.id || (@request.auth.collectionName = \"users\" && @request.auth.role = \"admin\")",
+    "viewRule": "id = @request.auth.id || (@request.auth.collectionName = \"users\" && @request.auth.role = \"admin\")",
+    "createRule": "",
+    "updateRule": "id = @request.auth.id || (@request.auth.collectionName = \"users\" && @request.auth.role = \"admin\")",
+    "deleteRule": "(@request.auth.collectionName = \"users\" && @request.auth.role = \"admin\")"
+  },
+  "marketplace_listings": {
+    "listRule": "status = \"Approved\" || @request.auth.id = owner || (@request.auth.collectionName = \"users\" && @request.auth.role = \"admin\")",
+    "viewRule": "status = \"Approved\" || @request.auth.id = owner || (@request.auth.collectionName = \"users\" && @request.auth.role = \"admin\")",
+    "createRule": "@request.auth.collectionName = \"marketplace_users\" && @request.auth.id = owner",
+    "updateRule": "@request.auth.id = owner || (@request.auth.collectionName = \"users\" && @request.auth.role = \"admin\")",
+    "deleteRule": "@request.auth.id = owner || (@request.auth.collectionName = \"users\" && @request.auth.role = \"admin\")"
+  },
+  "marketplace_contact_requests": {
+    "listRule": "(@request.auth.collectionName = \"users\" && @request.auth.role = \"admin\")",
+    "viewRule": "(@request.auth.collectionName = \"users\" && @request.auth.role = \"admin\")",
+    "createRule": "",
+    "updateRule": "(@request.auth.collectionName = \"users\" && @request.auth.role = \"admin\")",
+    "deleteRule": "(@request.auth.collectionName = \"users\" && @request.auth.role = \"admin\")"
+  },
+  "recipients": {
+    "listRule": "@request.auth.role = 'admin'",
+    "viewRule": "@request.auth.role = 'admin'",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "eod_reports": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "createRule": "@request.auth.id != '' && @request.auth.id = employee",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "monthly_targets": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "call_logs": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = employee || @request.auth.id = employee.manager",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = employee || @request.auth.id = employee.manager",
+    "createRule": "@request.auth.id != '' && @request.auth.id = @request.body.employee",
+    "updateRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "incoming_calls": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "createRule": "@request.auth.id != ''",
+    "updateRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "call_history": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = employee || @request.auth.id = employee.manager",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = employee || @request.auth.id = employee.manager",
+    "createRule": "@request.auth.id != '' && @request.auth.id = @request.body.employee",
+    "updateRule": null,
+    "deleteRule": null
+  },
+  "whatsapp_history": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = employee || @request.auth.id = employee.manager",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = employee || @request.auth.id = employee.manager",
+    "createRule": "@request.auth.id != '' && @request.auth.id = @request.body.employee",
+    "updateRule": null,
+    "deleteRule": null
+  },
+  "salary_records": {
+    "listRule": "(@request.auth.role = 'admin' || @request.auth.id = employee) || @request.auth.role = 'ca'",
+    "viewRule": "(@request.auth.role = 'admin' || @request.auth.id = employee) || @request.auth.role = 'ca'",
+    "createRule": "@request.auth.role = 'admin' || (@request.auth.id != '' && @request.auth.id = @request.body.employee)",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "exit_records": {
+    "listRule": "@request.auth.role = 'admin'",
+    "viewRule": "@request.auth.role = 'admin'",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": null
+  },
+  "velqen_smile_inquiries": {
+    "listRule": "@request.auth.role = 'admin'",
+    "viewRule": "@request.auth.role = 'admin'",
+    "createRule": "",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "velqen_smile_donors": {
+    "listRule": "@request.auth.role = 'admin'",
+    "viewRule": "@request.auth.role = 'admin'",
+    "createRule": "",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "velqen_smile_help_seekers": {
+    "listRule": "@request.auth.role = 'admin'",
+    "viewRule": "@request.auth.role = 'admin'",
+    "createRule": "",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "volunteer_registrations": {
+    "listRule": "@request.auth.role = 'admin'",
+    "viewRule": "@request.auth.role = 'admin'",
+    "createRule": "",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "late_apologies": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "createRule": "@request.auth.id != '' && @request.auth.id = employee",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "lead_allocation_requests": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = manager",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = manager",
+    "createRule": "@request.auth.id != '' && @request.auth.id = manager",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "client_status_history": {
+    "listRule": "@request.auth.role = 'admin' || client.owner = @request.auth.id || client.clientUser = @request.auth.id || client.fillingOfficer = @request.auth.id",
+    "viewRule": "@request.auth.role = 'admin' || client.owner = @request.auth.id || client.clientUser = @request.auth.id || client.fillingOfficer = @request.auth.id",
+    "createRule": "@request.auth.id != ''",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "application_status_history": {
+    "listRule": "@request.auth.role = 'admin' || client.owner = @request.auth.id || client.clientUser = @request.auth.id || client.fillingOfficer = @request.auth.id",
+    "viewRule": "@request.auth.role = 'admin' || client.owner = @request.auth.id || client.clientUser = @request.auth.id || client.fillingOfficer = @request.auth.id",
+    "createRule": "@request.auth.id != ''",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "salary_slip_audit": {
+    "listRule": "@request.auth.role = 'admin'",
+    "viewRule": "@request.auth.role = 'admin'",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "employee_change_requests": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = manager",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = manager",
+    "createRule": "@request.auth.id != '' && (@request.auth.role = 'admin' || @request.auth.id = manager)",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "payroll_settings": {
+    "listRule": "@request.auth.role = 'admin'",
+    "viewRule": "@request.auth.role = 'admin'",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "payroll_settings_audit": {
+    "listRule": "@request.auth.role = 'admin'",
+    "viewRule": "@request.auth.role = 'admin'",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "manager_salary_requests": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = manager",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = manager",
+    "createRule": "@request.auth.id != '' && (@request.auth.role = 'admin' || @request.auth.id = manager)",
+    "updateRule": "@request.auth.role = 'admin' || @request.auth.id = manager",
+    "deleteRule": "@request.auth.role = 'admin' || @request.auth.id = manager"
+  },
+  "manager_compiled_eods": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = manager",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = manager",
+    "createRule": "@request.auth.id != '' && @request.auth.id = manager",
+    "updateRule": "@request.auth.role = 'admin' || @request.auth.id = manager",
+    "deleteRule": "@request.auth.role = 'admin' || @request.auth.id = manager"
+  },
+  "manager_eod_reports": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = manager",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = manager",
+    "createRule": "@request.auth.id != '' && (@request.auth.role = 'admin' || @request.auth.id = manager)",
+    "updateRule": "@request.auth.role = 'admin' || @request.auth.id = manager",
+    "deleteRule": "@request.auth.role = 'admin' || @request.auth.id = manager"
+  },
+  "employee_documents": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "manager_eod_reviews": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = manager",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = manager",
+    "createRule": "@request.auth.id != '' && (@request.auth.role = 'admin' || @request.auth.id = manager)",
+    "updateRule": "@request.auth.role = 'admin' || @request.auth.id = manager",
+    "deleteRule": "@request.auth.role = 'admin' || @request.auth.id = manager"
+  },
+  "manager_eod_consolidated": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = manager",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = manager",
+    "createRule": "@request.auth.id != '' && (@request.auth.role = 'admin' || @request.auth.id = manager)",
+    "updateRule": "@request.auth.role = 'admin' || @request.auth.id = manager",
+    "deleteRule": "@request.auth.role = 'admin' || @request.auth.id = manager"
+  },
+  "visitor_feedback": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = manager || @request.auth.id = visitor.referredEmployee",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = manager || @request.auth.id = visitor.referredEmployee",
+    "createRule": "@request.auth.id != ''",
+    "updateRule": "@request.auth.role = 'admin' || @request.auth.id = manager",
+    "deleteRule": "@request.auth.role = 'admin' || @request.auth.id = manager"
+  },
+  "resignation_requests": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "createRule": "@request.auth.id != '' && @request.auth.id = employee",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "disciplinary_records": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "website_updates": {
+    "listRule": "status = 'Published' || @request.auth.role = 'admin'",
+    "viewRule": "status = 'Published' || @request.auth.role = 'admin'",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "whatsapp_accounts": {
+    "listRule": "@request.auth.id != '' && (@request.auth.id = employee || @request.auth.role = 'admin' || @request.auth.role = 'manager')",
+    "viewRule": "@request.auth.id != '' && (@request.auth.id = employee || @request.auth.role = 'admin' || @request.auth.role = 'manager')",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.role = 'admin' || @request.auth.role = 'manager'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "whatsapp_conversations": {
+    "listRule": "@request.auth.id != '' && (@request.auth.id = employee || @request.auth.role = 'admin' || @request.auth.role = 'manager')",
+    "viewRule": "@request.auth.id != '' && (@request.auth.id = employee || @request.auth.role = 'admin' || @request.auth.role = 'manager')",
+    "createRule": "@request.auth.id != ''",
+    "updateRule": "@request.auth.id != '' && (@request.auth.id = employee || @request.auth.role = 'admin' || @request.auth.role = 'manager')",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "wa_crm_messages": {
+    "listRule": "@request.auth.id != '' && (@request.auth.id = employeeId || @request.auth.role = 'admin' || @request.auth.role = 'manager')",
+    "viewRule": "@request.auth.id != '' && (@request.auth.id = employeeId || @request.auth.role = 'admin' || @request.auth.role = 'manager')",
+    "createRule": "@request.auth.id != ''",
+    "updateRule": "@request.auth.id != '' && (@request.auth.id = employeeId || @request.auth.role = 'admin')",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "whatsapp_templates": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.role = 'manager' || @request.auth.id != ''",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.role = 'manager' || @request.auth.id != ''",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "whatsapp_webhook_events": {
+    "listRule": "@request.auth.role = 'admin'",
+    "viewRule": "@request.auth.role = 'admin'",
+    "createRule": null,
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "login_sessions": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "createRule": "@request.auth.id != '' && (@request.auth.role = 'admin' || @request.auth.id = employee)",
+    "updateRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "payment_references": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.role = 'manager'",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.role = 'manager'",
+    "createRule": null,
+    "updateRule": "@request.auth.role = 'admin' || @request.auth.role = 'manager'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "card_payments": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.role = 'manager'",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.role = 'manager'",
+    "createRule": null,
+    "updateRule": "@request.auth.role = 'admin' || @request.auth.role = 'manager'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "recruitment_candidates": {
+    "listRule": "@request.auth.role = 'admin' || (@request.auth.id = assignedManager && deleted != true)",
+    "viewRule": "@request.auth.role = 'admin' || (@request.auth.id = assignedManager && deleted != true)",
+    "createRule": null,
+    "updateRule": "@request.auth.role = 'admin' || (@request.auth.id = assignedManager && deleted != true)",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "recruitment_conversations": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = createdBy",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = createdBy",
+    "createRule": "@request.auth.id != ''",
+    "updateRule": "@request.auth.role = 'admin' || @request.auth.id = createdBy",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "recruitment_interviews": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = createdBy",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = createdBy",
+    "createRule": "@request.auth.id != ''",
+    "updateRule": "@request.auth.role = 'admin' || @request.auth.id = createdBy",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "recruitment_assessments": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = createdBy",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = createdBy",
+    "createRule": "@request.auth.id != ''",
+    "updateRule": "@request.auth.role = 'admin' || @request.auth.id = createdBy",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "recruitment_hire_requests": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = submittedBy",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = submittedBy",
+    "createRule": "@request.auth.id != ''",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "hr_round_robin_state": {
+    "listRule": "@request.auth.role = 'admin'",
+    "viewRule": "@request.auth.role = 'admin'",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "candidate_notes": {
+    "listRule": "@request.auth.role = 'admin' || candidate.assignedManager = @request.auth.id",
+    "viewRule": "@request.auth.role = 'admin' || candidate.assignedManager = @request.auth.id",
+    "createRule": "@request.auth.id != '' && (@request.auth.role = 'admin' || candidate.assignedManager = @request.auth.id)",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "manager_activity_log": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = manager",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = manager",
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": null
+  },
+  "employee_reactivation_log": {
+    "listRule": "@request.auth.role = 'admin'",
+    "viewRule": "@request.auth.role = 'admin'",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": null,
+    "deleteRule": null
+  },
+  "logistics_users": {
+    "listRule": "id = @request.auth.id || @request.auth.role = \"admin\"",
+    "viewRule": "id = @request.auth.id || @request.auth.role = \"admin\"",
+    "createRule": "",
+    "updateRule": "id = @request.auth.id || @request.auth.role = \"admin\"",
+    "deleteRule": "id = @request.auth.id || @request.auth.role = \"admin\""
+  },
+  "logistics_loads": {
+    "listRule": "",
+    "viewRule": "",
+    "createRule": "@request.auth.id != '' && @request.auth.id = owner",
+    "updateRule": "@request.auth.id != '' && (@request.auth.id = owner || @request.auth.role = 'admin')",
+    "deleteRule": "@request.auth.id != '' && (@request.auth.id = owner || @request.auth.role = 'admin')"
+  },
+  "logistics_saved_loads": {
+    "listRule": "@request.auth.id != '' && @request.auth.id = owner",
+    "viewRule": "@request.auth.id != '' && @request.auth.id = owner",
+    "createRule": "@request.auth.id != '' && @request.auth.id = owner",
+    "updateRule": "@request.auth.id != '' && @request.auth.id = owner",
+    "deleteRule": "@request.auth.id != '' && @request.auth.id = owner"
+  },
+  "logistics_load_responses": {
+    "listRule": "@request.auth.id != '' && (@request.auth.id = owner || @request.auth.id = load.owner || @request.auth.role = 'admin')",
+    "viewRule": "@request.auth.id != '' && (@request.auth.id = owner || @request.auth.id = load.owner || @request.auth.role = 'admin')",
+    "createRule": "@request.auth.id != '' && @request.auth.id = owner",
+    "updateRule": "@request.auth.id != '' && (@request.auth.id = owner || @request.auth.id = load.owner || @request.auth.role = 'admin')",
+    "deleteRule": "@request.auth.id != '' && (@request.auth.id = owner || @request.auth.role = 'admin')"
+  },
+  "logistics_jobs": {
+    "listRule": "",
+    "viewRule": "",
+    "createRule": "@request.auth.id != '' && (@request.auth.role = 'admin' || @request.auth.collectionName = 'logistics_users')",
+    "updateRule": "@request.auth.id != '' && (@request.auth.role = 'admin' || @request.auth.id = owner)",
+    "deleteRule": "@request.auth.id != '' && (@request.auth.role = 'admin' || @request.auth.id = owner)"
+  },
+  "logistics_job_applications": {
+    "listRule": "@request.auth.id != '' && (@request.auth.id = applicant || @request.auth.role = 'admin')",
+    "viewRule": "@request.auth.id != '' && (@request.auth.id = applicant || @request.auth.role = 'admin')",
+    "createRule": "@request.auth.id != '' && @request.auth.id = applicant",
+    "updateRule": "@request.auth.id != '' && (@request.auth.id = applicant || @request.auth.role = 'admin')",
+    "deleteRule": "@request.auth.id != '' && (@request.auth.id = applicant || @request.auth.role = 'admin')"
+  },
+  "logistics_dispatch_requests": {
+    "listRule": "@request.auth.id != '' && (@request.auth.id = owner || @request.auth.role = 'admin' || @request.auth.id = assignedTo)",
+    "viewRule": "@request.auth.id != '' && (@request.auth.id = owner || @request.auth.role = 'admin' || @request.auth.id = assignedTo)",
+    "createRule": "@request.auth.id != '' && @request.auth.id = owner",
+    "updateRule": "@request.auth.id != '' && (@request.auth.id = owner || @request.auth.role = 'admin' || @request.auth.id = assignedTo)",
+    "deleteRule": "@request.auth.id != '' && (@request.auth.role = 'admin')"
+  },
+  "logistics_drayage_requests": {
+    "listRule": "@request.auth.id != '' && (@request.auth.id = owner || @request.auth.role = 'admin' || @request.auth.id = assignedTo)",
+    "viewRule": "@request.auth.id != '' && (@request.auth.id = owner || @request.auth.role = 'admin' || @request.auth.id = assignedTo)",
+    "createRule": "@request.auth.id != '' && @request.auth.id = owner",
+    "updateRule": "@request.auth.id != '' && (@request.auth.id = owner || @request.auth.role = 'admin' || @request.auth.id = assignedTo)",
+    "deleteRule": "@request.auth.id != '' && (@request.auth.role = 'admin')"
+  },
+  "logistics_freight_requests": {
+    "listRule": "@request.auth.id != '' && (@request.auth.id = owner || @request.auth.role = 'admin' || @request.auth.id = assignedTo)",
+    "viewRule": "@request.auth.id != '' && (@request.auth.id = owner || @request.auth.role = 'admin' || @request.auth.id = assignedTo)",
+    "createRule": "@request.auth.id != '' && @request.auth.id = owner",
+    "updateRule": "@request.auth.id != '' && (@request.auth.id = owner || @request.auth.role = 'admin' || @request.auth.id = assignedTo)",
+    "deleteRule": "@request.auth.id != '' && (@request.auth.role = 'admin')"
+  },
+  "logistics_notifications": {
+    "listRule": "@request.auth.id != '' && @request.auth.id = owner",
+    "viewRule": "@request.auth.id != '' && @request.auth.id = owner",
+    "createRule": "@request.auth.id != '' && (@request.auth.id = owner || @request.auth.role = 'admin')",
+    "updateRule": "@request.auth.id != '' && (@request.auth.id = owner || @request.auth.role = 'admin')",
+    "deleteRule": "@request.auth.id != '' && (@request.auth.id = owner || @request.auth.role = 'admin')"
+  },
+  "carrier_verifications": {
+    "listRule": "@request.auth.id != '' && (@request.auth.id = owner || @request.auth.role = 'admin')",
+    "viewRule": "@request.auth.id != '' && (@request.auth.id = owner || @request.auth.role = 'admin')",
+    "createRule": "@request.auth.id != '' && @request.auth.id = @request.body.owner",
+    "updateRule": "@request.auth.id != '' && (@request.auth.id = owner || @request.auth.role = 'admin')",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "fmcsa_carriers": {
+    "listRule": null,
+    "viewRule": null,
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": null
+  },
+  "fmcsa_imports": {
+    "listRule": "@request.auth.role = 'admin'",
+    "viewRule": "@request.auth.role = 'admin'",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "carrier_google_reputation": {
+    "listRule": null,
+    "viewRule": null,
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": null
+  },
+  "financial_transactions": {
+    "listRule": "(@request.auth.id != \"\") || @request.auth.role = 'ca'",
+    "viewRule": "(@request.auth.id != \"\") || @request.auth.role = 'ca'",
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": null
+  },
+  "company_holidays": {
+    "listRule": "@request.auth.id != ''",
+    "viewRule": "@request.auth.id != ''",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "company_holiday_audit": {
+    "listRule": "@request.auth.role = 'admin'",
+    "viewRule": "@request.auth.role = 'admin'",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "overtime_requests": {
+    "listRule": "@request.auth.id != ''",
+    "viewRule": "@request.auth.id != ''",
+    "createRule": "@request.auth.id != ''",
+    "updateRule": "@request.auth.id != ''",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "overtime_settings": {
+    "listRule": "@request.auth.id != ''",
+    "viewRule": "@request.auth.id != ''",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "realtime_heartbeat": {
+    "listRule": "@request.auth.id != ''",
+    "viewRule": "@request.auth.id != ''",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.id != ''",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "chat_compliance_alerts": {
+    "listRule": "@request.auth.role = 'admin'",
+    "viewRule": "@request.auth.role = 'admin'",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "chat_deletion_audit": {
+    "listRule": "@request.auth.role = 'admin'",
+    "viewRule": "@request.auth.role = 'admin'",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "chat_access_log": {
+    "listRule": "@request.auth.role = 'admin'",
+    "viewRule": "@request.auth.role = 'admin'",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "security_sessions": {
+    "listRule": "@request.auth.role = 'admin'",
+    "viewRule": "@request.auth.role = 'admin'",
+    "createRule": null,
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "security_audit": {
+    "listRule": "@request.auth.role = 'admin'",
+    "viewRule": "@request.auth.role = 'admin'",
+    "createRule": null,
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "recruitment_candidate_edits": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = assignedManager || @request.auth.id = editedBy",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = assignedManager || @request.auth.id = editedBy",
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": null
+  },
+  "employee_letters": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = employee",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "client_document_requests": {
+    "listRule": "@request.auth.role = 'admin' || @request.auth.id = client || @request.auth.id = requestedBy",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id = client || @request.auth.id = requestedBy",
+    "createRule": null,
+    "updateRule": "@request.auth.role = 'admin' || @request.auth.id = client || @request.auth.id = requestedBy",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "filling_officer_audit": {
+    "listRule": "@request.auth.role = 'admin'",
+    "viewRule": "@request.auth.role = 'admin'",
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "fo_emails": {
+    "listRule": "@request.auth.role = 'admin' || fillingOfficer = @request.auth.id || clientUser = @request.auth.id",
+    "viewRule": "@request.auth.role = 'admin' || fillingOfficer = @request.auth.id || clientUser = @request.auth.id",
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "saturday_special_config": {
+    "listRule": "@request.auth.id != ''",
+    "viewRule": "@request.auth.id != ''",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  },
+  "manager_weekly_reports": {
+    "listRule": "@request.auth.id != '' && (@request.auth.id = manager || @request.auth.role = 'admin')",
+    "viewRule": "@request.auth.id != '' && (@request.auth.id = manager || @request.auth.role = 'admin')",
+    "createRule": "@request.auth.id != '' && @request.auth.id = @request.body.manager",
+    "updateRule": "@request.auth.id != '' && (@request.auth.id = manager || @request.auth.role = 'admin')",
+    "deleteRule": null
+  },
+  "manager_location_log": {
+    "listRule": "@request.auth.role = 'admin'",
+    "viewRule": "@request.auth.role = 'admin'",
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": null
+  },
+  "companies": {
+    "listRule": "@request.auth.role = 'admin'",
+    "viewRule": "@request.auth.role = 'admin'",
+    "createRule": "@request.auth.role = 'admin'",
+    "updateRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.role = 'admin'"
+  }
+}
