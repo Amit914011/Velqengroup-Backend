@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "description": "Express + Mongoose PocketBase-compatible server and migration suite",
   "type": "module",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "scripts": {
     "build": "tsc",
     "migrate": "tsx scripts/migrate-from-pocketbase.ts",
     "verify": "tsx scripts/verify-migration.ts",
     "differential": "tsx scripts/differential-test.ts",
     "dev": "tsx watch src/index.ts",
-    "start": "node dist/index.js"
+    "start": "node dist/src/index.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",

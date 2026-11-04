@@ -42,6 +42,12 @@ async function getCollectionNames(pbSuperToken: string): Promise<string[]> {
 }
 
 async function run() {
+  if (process.env.ALLOW_REMOTE !== 'true') {
+    const isLocal = (u: string) => u.includes('127.0.0.1') || u.includes('localhost') || u.includes('::1');
+    if (!isLocal(PB_URL) || !isLocal(SERVER_URL)) {
+      throw new Error(`Refusing to run differential test with non-local endpoint (PB: ${PB_URL}, Server: ${SERVER_URL}) without ALLOW_REMOTE=true`);
+    }
+  }
   console.log('--- Starting Differential Test Runner ---');
   initReportFile();
 

@@ -21,6 +21,13 @@ const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/velqen
 const DEV_DEFAULT_PASSWORD = process.env.DEV_DEFAULT_PASSWORD || 'DevPassword123!';
 const PB_STORAGE_DIR = process.env.PB_STORAGE_DIR || '../pocketbase/pb_data/storage';
 
+if (process.env.ALLOW_REMOTE !== 'true') {
+  const isLocal = (u: string) => u.includes('127.0.0.1') || u.includes('localhost') || u.includes('::1');
+  if (!isLocal(PB_URL) || !isLocal(MONGODB_URI)) {
+    throw new Error(`Refusing to run migration with non-local endpoint (PB: ${PB_URL}, Mongo: ${MONGODB_URI}) without ALLOW_REMOTE=true`);
+  }
+}
+
 const shouldDrop = process.argv.includes('--drop');
 
 // Helper to copy directory recursively

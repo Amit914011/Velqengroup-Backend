@@ -1,15 +1,15 @@
-
+import '../../network-guard.cjs';
 import { createApp } from './app.js';
 import { connectDatabase } from './config/database.js';
 import { PORT } from './config/environment.js';
+import { checkLiveStartupGuard } from './utils/integrationGate.js';
 
 export const app = createApp();
 
 export async function startServer() {
   try {
+    checkLiveStartupGuard();
     await connectDatabase();
-
-    console.log('✅ MongoDB connected successfully');
 
     const server = await new Promise<ReturnType<typeof app.listen>>(
       (resolve, reject) => {
@@ -18,13 +18,8 @@ export async function startServer() {
       },
     );
 
-    console.log('🚀 Server is running successfully');
-    console.log(`🌐 URL: http://localhost:${PORT}`);
-    console.log(`💚 Health: http://localhost:${PORT}/health`);
-
     return server;
   } catch (err) {
-    console.error('❌ Startup failed:', err);
     process.exit(1);
   }
 }
