@@ -10,8 +10,12 @@ function hasDollarKey(obj: any): boolean {
   return false;
 }
 
-// Reject dangerous injection keys and unbounded inputs
+// Add standard HTTP security headers and sanitize request parameters
 export function securityMiddleware(req: Request, res: Response, next: NextFunction): void {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+
   if (hasDollarKey(req.body) || hasDollarKey(req.query)) {
     sendPbError(res, 400, 'Invalid input: operator keys starting with $ are not permitted.');
     return;
@@ -25,4 +29,3 @@ export function securityMiddleware(req: Request, res: Response, next: NextFuncti
 
   next();
 }
-

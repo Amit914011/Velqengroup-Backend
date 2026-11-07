@@ -1,7 +1,8 @@
 import { Router } from 'express';
-import { getChatPeople } from '../controllers/chatPeople.controller.js';
+import { requireAuth } from '../middlewares/rbac.middleware.js';
+import { getChatPeople, recordAdminAccessLog } from '../controllers/chatPeople.controller.js';
 
 export const chatPeopleRouter = Router();
 
-chatPeopleRouter.get('/people', getChatPeople);
-
+chatPeopleRouter.get('/people', requireAuth, getChatPeople);
+chatPeopleRouter.post('/admin/access-log', requireAuth, recordAdminAccessLog);

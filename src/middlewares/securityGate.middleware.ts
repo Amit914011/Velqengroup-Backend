@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { SecuritySessionsModel } from '../models/security_sessions.js';
 import { loadRules } from '../utils/rules/ruleLoader.js';
 import { sendPbError } from '../views/error.view.js';
+import { resolveRole } from '../services/roles.service.js';
 
 // Collections accessed during initial login or non-sensitive system keepalives
 const SECURITY_ALLOWLIST = new Set([
@@ -38,7 +39,12 @@ function getActionRule(rules: any, method: string, isDetail: boolean): string | 
 // Security gate: blocks employee access to protected collections without an active security session
 export async function securityGateMiddleware(req: Request, res: Response, next: NextFunction): Promise<void> {
   const auth = (req as any).auth;
-  if (!auth || auth.role !== 'employee' || auth.department === 'Chartered Accountant') {
+  if (!auth) return next();
+
+  const role = resolveRole(auth);
+  // Passcode gate applies only to internal staff (employee, manager, filling_officer)
+  // Exempt: admin, superuser, CA, reception, external clients, volunteers, logistics, marketplace
+  if (role !== 'employee' && role !== 'manager' && role !== 'filling_officer') {
     return next();
   }
 

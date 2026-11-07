@@ -1,10 +1,11 @@
 import { Request, Response } from 'express';
 import { UsersModel } from '../models/users.js';
+import { ChatAccessLogModel } from '../models/chat_access_log.js';
 import { sendPbError } from '../views/error.view.js';
+import { generatePbId } from '../utils/idGenerator.js';
 
 const EXIT_STATUSES = new Set(['Left', 'Resigned', 'Terminated', 'Exited', 'Inactive', 'Archived', 'Deleted']);
 
-// Check if a user record is eligible for peer chat
 function isEligible(u: any): boolean {
   if (!u) return false;
   const role = u.role || '';
@@ -15,7 +16,6 @@ function isEligible(u: any): boolean {
   return true;
 }
 
-// Shape user object for chat client
 function serializeChatUser(u: any): any {
   return {
     id: String(u._id || u.id || ''),
@@ -30,13 +30,9 @@ function serializeChatUser(u: any): any {
   };
 }
 
-// GET /api/chat/people - Returns chat-eligible peers based on role hierarchy
 export async function getChatPeople(req: Request, res: Response): Promise<void> {
   const auth = (req as any).auth;
-  if (!auth) {
-    sendPbError(res, 401, 'Login required.');
-    return;
-  }
+  if (!auth) return sendPbError(res, 401, 'Login required.');
 
   const seen = new Set<string>();
   const out: any[] = [];
@@ -93,3 +89,25 @@ export async function getChatPeople(req: Request, res: Response): Promise<void> 
   res.json({ people: out });
 }
 
+export async function recordAdminAccessLog(req: Request, res: Response): Promise<void> {
+  const auth = (req as any).auth;
+  if (!auth) return sendPbError(res, 401, 'Login required.');
+  if (auth.role !== 'admin' && !auth.isSuperuser) {
+    return sendPbError(res, 403, 'Admin access only.');
+  }
+
+  const { conversationId, conversationLabel, isDm } = req.body || {};
+  if (!conversationId) return sendPbError(res, 400, 'conversationId is required.');
+
+  await ChatAccessLogModel.create({
+    _id: generatePbId(),
+    admin: auth.id || auth._id,
+    adminName: auth.name || auth.email || '',
+    conversationId: String(conversationId).slice(0, 120),
+    conversationLabel: String(conversationLabel || '').slice(0, 200),
+    isDm: Boolean(isDm),
+    accessedAt: new Date().toISOString(),
+  });
+
+  res.json({ ok: true });
+}

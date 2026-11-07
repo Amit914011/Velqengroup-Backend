@@ -6,17 +6,39 @@ import { securityRouter } from './security.routes.js';
 import { realtimeRouter } from './realtime.routes.js';
 import { chatPeopleRouter } from './chatPeople.routes.js';
 import { saturdaySpecialRouter } from './saturdaySpecial.routes.js';
+import { filesRouter } from './files.routes.js';
+import { phoneOtpRouter, emailOtpRouter } from './otp.routes.js';
+import userAdminRouter from './userAdmin.routes.js';
+import employeeChangeRouter from './employeeChange.routes.js';
+import attendanceRouter from './attendance.routes.js';
+import breaksRouter from './breaks.routes.js';
+import leaveRouter from './leave.routes.js';
+import eodRouter from './eod.routes.js';
+import lettersRouter from './letters.routes.js';
+import exitRouter from './exit.routes.js';
+import managerDataRouter from './managerData.routes.js';
 
 export const apiRouter = Router();
 
 apiRouter.get('/health', healthCheck);
 apiRouter.get('/collections', collectionsSummary);
+apiRouter.use('/files', filesRouter);
+apiRouter.use('/otp', phoneOtpRouter);
+apiRouter.use('/velqen-otp', emailOtpRouter);
 apiRouter.use('/realtime', realtimeRouter);
 apiRouter.use('/security', securityRouter);
 apiRouter.use('/chat', chatPeopleRouter);
 apiRouter.use('/saturday-special', saturdaySpecialRouter);
+
+apiRouter.use(userAdminRouter);
+apiRouter.use(employeeChangeRouter);
+apiRouter.use(attendanceRouter);
+apiRouter.use(breaksRouter);
+apiRouter.use(leaveRouter);
+apiRouter.use(eodRouter);
+apiRouter.use(lettersRouter);
+apiRouter.use(exitRouter);
+apiRouter.use(managerDataRouter);
+
 apiRouter.use('/collections/:collection/records', recordsRouter);
 apiRouter.use('/collections/:collection', authRouter);
-
-
-

@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { verifyAuthToken, decodeTokenUnverified } from '../utils/jwt.js';
 import { COLLECTION_ID_TO_NAME } from '../config/collections.js';
 import { ALL_MODELS } from '../models/index.js';
+import { resolveRole } from '../services/roles.service.js';
 
 const userCache = new Map<string, { doc: any; expiry: number }>();
 
@@ -57,15 +58,18 @@ export async function authContextMiddleware(
   if (model) {
     const userDoc = await getCachedUser(model, payload.id);
     if (userDoc) {
-      (req as any).auth = {
+      const authUser = {
         id: String(userDoc._id),
         role: userDoc.role || (colName === '_superusers' ? 'admin' : ''),
         email: userDoc.email || '',
         department: userDoc.department || '',
+        designation: userDoc.designation || '',
         collectionId: payload.collectionId,
         collectionName: colName,
         ...userDoc,
       };
+      (authUser as any).resolvedRole = resolveRole(authUser);
+      (req as any).auth = authUser;
       return next();
     }
   }
