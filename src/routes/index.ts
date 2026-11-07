@@ -17,6 +17,12 @@ import eodRouter from './eod.routes.js';
 import lettersRouter from './letters.routes.js';
 import exitRouter from './exit.routes.js';
 import managerDataRouter from './managerData.routes.js';
+import payrollRouter from './payroll.routes.js';
+import managerSalaryRouter from './managerSalary.routes.js';
+import receiptRouter from './receipt.routes.js';
+import expenseRouter from './expense.routes.js';
+import financeReportsRouter from './financeReports.routes.js';
+import caRouter from './ca.routes.js';
 
 export const apiRouter = Router();
 
@@ -39,6 +45,12 @@ apiRouter.use(eodRouter);
 apiRouter.use(lettersRouter);
 apiRouter.use(exitRouter);
 apiRouter.use(managerDataRouter);
+apiRouter.use(payrollRouter);
+apiRouter.use(managerSalaryRouter);
+apiRouter.use(receiptRouter);
+apiRouter.use(expenseRouter);
+apiRouter.use(financeReportsRouter);
+apiRouter.use(caRouter);
 
 apiRouter.use('/collections/:collection/records', recordsRouter);
 apiRouter.use('/collections/:collection', authRouter);
