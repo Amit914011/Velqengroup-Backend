@@ -23,6 +23,13 @@ import receiptRouter from './receipt.routes.js';
 import expenseRouter from './expense.routes.js';
 import financeReportsRouter from './financeReports.routes.js';
 import caRouter from './ca.routes.js';
+import crmLeadsRouter from './crmLeads.routes.js';
+import crmBulkRouter from './crmBulk.routes.js';
+import crmAllocationRouter from './crmAllocation.routes.js';
+import receptionRouter from './reception.routes.js';
+import whatsappRouter from './whatsapp.routes.js';
+import fillingOfficerRouter from './fillingOfficer.routes.js';
+import foEmailRouter from './foEmail.routes.js';
 
 export const apiRouter = Router();
 
@@ -51,6 +58,13 @@ apiRouter.use(receiptRouter);
 apiRouter.use(expenseRouter);
 apiRouter.use(financeReportsRouter);
 apiRouter.use(caRouter);
+apiRouter.use(crmLeadsRouter);
+apiRouter.use(crmBulkRouter);
+apiRouter.use(crmAllocationRouter);
+apiRouter.use(receptionRouter);
+apiRouter.use(whatsappRouter);
+apiRouter.use(fillingOfficerRouter);
+apiRouter.use(foEmailRouter);
 
 apiRouter.use('/collections/:collection/records', recordsRouter);
 apiRouter.use('/collections/:collection', authRouter);

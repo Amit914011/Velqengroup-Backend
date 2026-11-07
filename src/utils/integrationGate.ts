@@ -31,7 +31,7 @@ export function checkIntegrationAllowed(integrationName: string): { allowed: boo
       errorResponse: {
         code: 503,
         message: 'This integration is switched off in this environment.',
-        data: { integration: integrationName, mode: 'off' },
+        data: {},
       },
     };
   }

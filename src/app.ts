@@ -8,6 +8,7 @@ import { healthCheck } from './controllers/health.controller.js';
 import { CORS_ORIGINS, TRUST_PROXY } from './config/environment.js';
 import { registerAllHrHooks } from './services/hr/registerHrHooks.js';
 import { registerFinanceHooks } from './services/finance/registerFinanceHooks.js';
+import { registerCrmHooks } from './services/crm/crmHooks.js';
 
 export function createApp(): Express {
   const app = express();
@@ -42,6 +43,7 @@ export function createApp(): Express {
 
   registerAllHrHooks();
   registerFinanceHooks();
+  registerCrmHooks();
 
   app.get('/health', healthCheck);
   app.use('/api', apiRouter);
