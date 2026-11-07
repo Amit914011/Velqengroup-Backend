@@ -77,7 +77,7 @@ export async function broadcastRecordChange(action: 'create' | 'update' | 'delet
 
     try {
       if (action !== 'delete' && !(await canClientRead(client, col, doc))) continue;
-      const formatted = formatRecord(doc, client.auth);
+      const formatted = formatRecord(doc, col, undefined, client.auth);
       const payload = JSON.stringify({ action, record: formatted });
       for (const topic of matchedTopics) {
         client.res.write(`event:${topic}\ndata:${payload}\n\n`);

@@ -17,7 +17,7 @@ import {
 
 const router = Router();
 
-router.use((_req, res, next) => {
+router.use('/whatsapp', (_req, res, next) => {
   const check = checkIntegrationAllowed('whatsapp');
   if (!check.allowed) {
     return res.status(check.errorResponse?.code || 503).json(check.errorResponse);

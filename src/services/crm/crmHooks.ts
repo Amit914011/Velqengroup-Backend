@@ -4,6 +4,7 @@ import { UsersModel } from '../../models/users.js';
 import { LeadNotesModel } from '../../models/lead_notes.js';
 import { NotificationsModel } from '../../models/notifications.js';
 import { generatePbId } from '../../utils/idGenerator.js';
+import { resolveOnlineInquiryOwner } from '../public/webUpdates.service.js';
 
 const EXIT_STATUSES = ['Left', 'Resigned', 'Terminated'];
 
@@ -32,7 +33,14 @@ export function registerCrmHooks(): void {
           'Cannot assign lead to a resigned/exited employee. Please choose an active employee instead.'
         );
       }
+    } else if (!ctx.auth && body.origin === 'Online Inquiry') {
+      const { ownerId, ownerName } = await resolveOnlineInquiryOwner(body.department);
+      if (ownerId) {
+        body.owner = ownerId;
+        body.ownerName = ownerName;
+      }
     }
+    return body;
   });
 
   registerHook('leads', 'beforeUpdate', async (ctx: HookContext) => {

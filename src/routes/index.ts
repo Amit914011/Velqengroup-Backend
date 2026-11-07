@@ -30,6 +30,14 @@ import receptionRouter from './reception.routes.js';
 import whatsappRouter from './whatsapp.routes.js';
 import fillingOfficerRouter from './fillingOfficer.routes.js';
 import foEmailRouter from './foEmail.routes.js';
+import recruitmentRouter from './recruitment.routes.js';
+import sheetsWebhookRouter from './sheetsWebhook.routes.js';
+import webUpdatesRouter from './webUpdates.routes.js';
+import smileRouter from './smile.routes.js';
+import quickPayRouter from './quickPay.routes.js';
+import cardPayRouter from './cardPay.routes.js';
+import aiRouter from './ai.routes.js';
+import carrierVerifyRouter from './carrierVerify.routes.js';
 
 export const apiRouter = Router();
 
@@ -65,6 +73,14 @@ apiRouter.use(receptionRouter);
 apiRouter.use(whatsappRouter);
 apiRouter.use(fillingOfficerRouter);
 apiRouter.use(foEmailRouter);
+apiRouter.use(recruitmentRouter);
+apiRouter.use(sheetsWebhookRouter);
+apiRouter.use(webUpdatesRouter);
+apiRouter.use(smileRouter);
+apiRouter.use(quickPayRouter);
+apiRouter.use(cardPayRouter);
+apiRouter.use(aiRouter);
+apiRouter.use('/carrier-verify', carrierVerifyRouter);
 
 apiRouter.use('/collections/:collection/records', recordsRouter);
 apiRouter.use('/collections/:collection', authRouter);

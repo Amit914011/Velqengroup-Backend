@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import bcrypt from 'bcrypt';
 import { ALL_MODELS } from '../models/index.js';
 import { RuleEngine } from '../utils/rules/index.js';
 import { parseFilter } from '../utils/filter/index.js';
@@ -10,24 +11,26 @@ import { generatePbId } from '../utils/idGenerator.js';
 import { isSaturdayLockActive } from './saturdaySpecial.controller.js';
 import { dispatchBefore, dispatchAfter } from '../services/hookDispatcher.service.js';
 import { processUploadedFiles, cleanupRecordFiles } from '../services/recordUpload.service.js';
+import { AUTH_COLLECTIONS } from '../config/collections.js';
 
-function combineFilters(ruleFilter: any, clientFilter: any): any {
-  const clauses: any[] = [];
-  if (Object.keys(ruleFilter).length > 0) clauses.push(ruleFilter);
-  if (Object.keys(clientFilter).length > 0) clauses.push(clientFilter);
-  if (clauses.length === 0) return {};
-  return clauses.length === 1 ? clauses[0] : { $and: clauses };
+function combineFilters(rf: any, cf: any): any {
+  const c = [rf, cf].filter(f => f && Object.keys(f).length > 0);
+  return c.length === 0 ? {} : c.length === 1 ? c[0] : { $and: c };
 }
 
 function checkUserSecurityFields(col: string, id: string, updates: any, auth: any): boolean {
-  if (col !== 'users') return true;
-  const isAdmin = auth?.role === 'admin' || auth?.collectionName === '_superusers';
-  if (isAdmin) return true;
+  if (col !== 'users' || auth?.role === 'admin' || auth?.collectionName === '_superusers') return true;
   const isSelf = auth?.id && auth.id === id;
   const selfOk = new Set(['security_failed_attempts', 'security_locked_until', 'security_last_verified_at']);
-  const secFields = ['security_passcode_hash', 'security_passcode_status', 'security_passcode_set_at',
+  const sec = ['security_passcode_hash', 'security_passcode_status', 'security_passcode_set_at',
     'security_passcode_reset_at', 'security_last_verified_at', 'security_failed_attempts', 'security_locked_until'];
-  return !secFields.some(sf => sf in updates && (!isSelf || !selfOk.has(sf)));
+  return !sec.some(sf => sf in updates && (!isSelf || !selfOk.has(sf)));
+}
+
+async function hashAuthPassword(col: string, data: any): Promise<void> {
+  if (AUTH_COLLECTIONS.has(col) && data.password && !String(data.password).startsWith('$2')) {
+    data.password = await bcrypt.hash(data.password, 10);
+  }
 }
 
 // GET /api/collections/:collection/records
@@ -55,18 +58,17 @@ export async function listRecords(req: Request, res: Response): Promise<void> {
     if (typeof req.query.filter === 'string' && req.query.filter.trim()) {
       clientFilter = await parseFilter(req.query.filter, model, ruleCtx);
     }
-
     const query = combineFilters(ruleFilter, clientFilter);
+
     const totalItems = opts.skipTotal ? -1 : await model.countDocuments(query);
     const totalPages = opts.skipTotal ? -1 : Math.ceil(totalItems / opts.perPage);
-    const skip = (opts.page - 1) * opts.perPage;
     let cursor = model.find(query);
     if (!opts.isRandomSort) cursor = cursor.sort(opts.sort);
-    const rawDocs = await cursor.skip(skip).limit(opts.perPage).lean();
+    const rawDocs = await cursor.skip((opts.page - 1) * opts.perPage).limit(opts.perPage).lean();
 
     const auth = (req as any).auth;
     const formatted = rawDocs.map((d: any) => formatRecord(d, col, opts.fields, auth));
-    if (opts.expand?.length) await populateExpands(formatted, opts.expand, model);
+    if (opts.expand?.length) await populateExpands(formatted, opts.expand, model, auth);
     res.json({ page: opts.page, perPage: opts.perPage, totalItems, totalPages, items: formatted });
   } catch (err: any) {
     sendPbError(res, err.code || 400, err.message);
@@ -82,7 +84,8 @@ export async function getRecord(req: Request, res: Response): Promise<void> {
     if (!model) return sendPbError(res, 404, `Collection "${col}" not found.`);
 
     const opts = parseQueryOptions(req.query);
-    const ruleCtx = { auth: (req as any).auth, query: req.query, method: 'GET' };
+    const auth = (req as any).auth;
+    const ruleCtx = { auth, query: req.query, method: 'GET' };
     const { allowed, mongoFilter } = await RuleEngine.compileAccessFilter('view', col, model, ruleCtx);
     if (!allowed) return sendPbError(res, 403, 'Only superusers can access this action.');
 
@@ -90,8 +93,8 @@ export async function getRecord(req: Request, res: Response): Promise<void> {
     const doc: any = await model.findOne(query).lean();
     if (!doc) return sendPbError(res, 404, "The requested resource wasn't found.");
 
-    const formatted = formatRecord(doc, col, opts.fields, (req as any).auth);
-    if (opts.expand?.length) await populateExpands([formatted], opts.expand, model);
+    const formatted = formatRecord(doc, col, opts.fields, auth);
+    if (opts.expand?.length) await populateExpands([formatted], opts.expand, model, auth);
     res.json(formatted);
   } catch (err: any) {
     sendPbError(res, 500, err.message);
@@ -109,11 +112,10 @@ export async function createRecord(req: Request, res: Response): Promise<void> {
     const allowed = await RuleEngine.evaluateWriteRule('create', col, model, ruleCtx);
     if (!allowed) return sendPbError(res, 403, 'Failed to create record. Rule violation.');
 
-    if (await isSaturdayLockActive((req as any).auth, col)) {
-      return sendPbError(res, 400, 'Saturday Fun Session is active. Employee Portal is temporarily locked.');
-    }
+    if (await isSaturdayLockActive((req as any).auth, col)) return sendPbError(res, 400, 'Saturday Lock active.');
 
     const initial = await dispatchBefore('beforeCreate', { collection: col, body: req.body || {}, auth: (req as any).auth });
+    await hashAuthPassword(col, initial);
     const recordId = initial.id || initial._id || generatePbId();
     delete initial.id;
     initial._id = recordId;
@@ -146,11 +148,10 @@ export async function updateRecord(req: Request, res: Response): Promise<void> {
     const allowed = await RuleEngine.evaluateWriteRule('update', col, model, ruleCtx);
     if (!allowed) return sendPbError(res, 403, 'Failed to update record. Rule violation.');
 
-    if (await isSaturdayLockActive((req as any).auth, col)) {
-      return sendPbError(res, 400, 'Saturday Fun Session is active. Employee Portal is temporarily locked.');
-    }
+    if (await isSaturdayLockActive((req as any).auth, col)) return sendPbError(res, 400, 'Saturday Lock active.');
 
     const updates = await dispatchBefore('beforeUpdate', { collection: col, id, record: existing.toObject(), body: req.body || {}, auth: (req as any).auth });
+    await hashAuthPassword(col, updates);
     delete updates.id;
     delete updates._id;
 
@@ -186,9 +187,7 @@ export async function deleteRecord(req: Request, res: Response): Promise<void> {
     const allowed = await RuleEngine.evaluateWriteRule('delete', col, model, ruleCtx);
     if (!allowed) return sendPbError(res, 403, 'Failed to delete record. Rule violation.');
 
-    if (await isSaturdayLockActive((req as any).auth, col)) {
-      return sendPbError(res, 400, 'Saturday Fun Session is active. Employee Portal is temporarily locked.');
-    }
+    if (await isSaturdayLockActive((req as any).auth, col)) return sendPbError(res, 400, 'Saturday Lock active.');
 
     await dispatchBefore('beforeDelete', { collection: col, id, record: existing.toObject(), body: {}, auth: (req as any).auth });
     await model.deleteOne({ _id: id });

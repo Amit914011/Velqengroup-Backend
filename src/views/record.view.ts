@@ -22,7 +22,7 @@ export function formatRecord(
   doc: any,
   collectionName: string,
   fields?: string[],
-  auth?: { role?: string; collectionName?: string }
+  auth?: { id?: string; role?: string; collectionName?: string }
 ): Record<string, any> {
   if (!doc) return {};
   const obj = typeof doc.toObject === 'function' ? doc.toObject() : { ...doc };
@@ -50,6 +50,17 @@ export function formatRecord(
       for (const sf of SECURITY_FIELDS) {
         delete record[sf];
       }
+    }
+  }
+
+  // Redact contact info on marketplace listings unless owner or users admin
+  if (collectionName === 'marketplace_listings') {
+    const isOwner = Boolean(auth?.id && String(auth.id) === String(record.owner));
+    const isAdmin = auth?.collectionName === 'users' && auth?.role === 'admin';
+    if (!isOwner && !isAdmin) {
+      delete record.contactName;
+      delete record.contactPhone;
+      delete record.contactEmail;
     }
   }
 

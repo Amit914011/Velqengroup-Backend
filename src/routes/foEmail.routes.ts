@@ -13,13 +13,16 @@ import {
 
 const router = Router();
 
-router.use((_req, res, next) => {
+const checkGate = (_req: any, res: any, next: any) => {
   const check = checkIntegrationAllowed('fo_email');
   if (!check.allowed) {
     return res.status(check.errorResponse?.code || 503).json(check.errorResponse);
   }
   next();
-});
+};
+
+router.use('/fo-email', checkGate);
+router.use('/filling-officer/email', checkGate);
 
 router.get('/fo-email/status', requireAuth, getEmailStatus);
 router.post('/fo-email/send', requireAuth, sendEmailAction);

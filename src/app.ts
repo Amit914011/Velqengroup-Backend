@@ -9,6 +9,7 @@ import { CORS_ORIGINS, TRUST_PROXY } from './config/environment.js';
 import { registerAllHrHooks } from './services/hr/registerHrHooks.js';
 import { registerFinanceHooks } from './services/finance/registerFinanceHooks.js';
 import { registerCrmHooks } from './services/crm/crmHooks.js';
+import { registerLogisticsHooks } from './services/logistics/logisticsHooks.js';
 
 export function createApp(): Express {
   const app = express();
@@ -44,6 +45,7 @@ export function createApp(): Express {
   registerAllHrHooks();
   registerFinanceHooks();
   registerCrmHooks();
+  registerLogisticsHooks();
 
   app.get('/health', healthCheck);
   app.use('/api', apiRouter);

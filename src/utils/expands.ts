@@ -6,7 +6,8 @@ import { formatRecord } from '../views/record.view.js';
 export async function populateExpands(
   items: any[],
   expandFields: string[],
-  model: Model<any>
+  model: Model<any>,
+  auth?: any
 ): Promise<void> {
   if (!items || items.length === 0 || !expandFields || expandFields.length === 0) return;
 
@@ -32,7 +33,7 @@ export async function populateExpands(
     const relatedDocs = await targetModel.find({ _id: { $in: Array.from(idSet) } }).lean();
     const relatedMap = new Map<string, any>();
     for (const doc of relatedDocs) {
-      relatedMap.set(String(doc._id), formatRecord(doc, refTarget));
+      relatedMap.set(String(doc._id), formatRecord(doc, refTarget, undefined, auth));
     }
 
     for (const item of items) {
